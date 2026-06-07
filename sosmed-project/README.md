@@ -27,8 +27,8 @@ Berikut adalah penggunaan hooks untuk memenuhi kriteria fungsionalitas aplikasi:
 *   **useEffect**: Digunakan untuk menjalankan operasi sampingan (side effects) seperti pengambilan data.Hook ini digunakan untuk melakukan fetch data pengguna dari API saat komponen pertama kali dimuat.
 ![Bukti Implementasi useEffect](sosmed-project/src/assets/useEffect.png)
 *   **useContext**: Digunakan untuk berbagi data secara global antar komponen tanpa perlu prop-drilling. Di dalam proyek ini, hook ini diimplementasikan melalui AppProvider untuk menyediakan akses state global—seperti theme, following, search, dan fungsi terkait—ke seluruh komponen di dalam aplikasi secara langsung.
-![Bukti Implementasi useEffect](sosmed-project/src/assets/useContext.png)
+![Bukti Implementasi useContext](sosmed-project/src/assets/useContext.png)
 *   **useRef**: Digunakan untuk mengakses elemen DOM secara langsung tanpa memicu re-render. Hook ini diimplementasikan melalui searchRef untuk memberikan fokus secara otomatis pada elemen input pencarian setelah ikon pencarian ditekan.
-![Bukti Implementasi useEffect](sosmed-project/src/assets/useRef.png)
+![Bukti Implementasi useRef](sosmed-project/src/assets/useRef.png)
 
 ---
