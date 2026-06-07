@@ -1,16 +1,23 @@
-# React + Vite
+# Dokumentasi UPRAK KKJ - VBook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyek ini adalah web media sosial sederhana yang dibangun menggunakan **React + Vite**, dengan memanfaatkan API dari **JSONPlaceholder** sebagai sumber data utama.
 
-Currently, two official plugins are available:
+## 1. Penjelasan Component
+Tampilan web ini dipecah menjadi beberapa bagian dari beberapa file berbeda untuk memastikan kode tetap rapi:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **App.jsx**: Komponen utama kontainer sistem. Mengatur *state* global, logika pemanggilan API, *conditional rendering* untuk pindah ke halaman detail, serta logika fitur *Like* dan *Follow*.
+* **Navbar.jsx**: Komponen navigasi atas. Berisi kolom pencarian (*search bar*) yang dilengkapi fitur *autocomplete hint* dan tombol untuk melihat riwayat pencarian.
+* **Card.jsx**: Komponen antarmuka (UI) *reusable* yang berfungsi menampilkan ringkasan informasi pengguna (nama, email, alamat) dalam bentuk kartu.
+* **UserDetail.jsx**: Komponen yang merender halaman profil spesifik secara mendalam ketika pengguna mengklik salah satu *Card*.
+* **Footer.jsx**: Komponen statis di bagian bawah halaman untuk informasi pembuat web.
 
-## React Compiler
+## 2. Penjelasan Fetch API
+Sistem mengambil data pengguna dari `https://jsonplaceholder.typicode.com/users` menggunakan fungsi bawaan `fetch()`. Proses pemanggilan API ini dibungkus di dalam hook `useEffect` dengan *dependency array* kosong `[]` pada `App.jsx`. Tujuannya agar pengambilan data dan perubahan *state* (dari *loading* menjadi selesai) hanya tereksekusi satu kali tepat ketika komponen pertama kali dimuat.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 3. Implementasi React Hooks
+Berikut adalah implementasi Hooks yang digunakan dalam proyek:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **useState**: Digunakan untuk membuat dan mengelola data dinamis yang dapat memicu pembaruan UI (*re-render*). Pada proyek ini, `useState` dipakai untuk menyimpan data *user* dari API, status *loading*, input pencarian, hingga daftar ID pengguna yang disukai (*likedUsers*).
+* **useEffect**: Digunakan untuk menangani *side-effects*, yaitu mengeksekusi operasi *async* (Fetch API) secara aman saat aplikasi baru saja dibuka tanpa memblok proses *rendering* awal aplikasi.
+* **useContext**: Digunakan untuk membagikan *state* pencarian (`inputSearch` dan `setInputSearch`) dari komponen induk `App.jsx` langsung ke dalam komponen `Navbar.jsx`. Pendekatan ini menyelesaikan masalah *prop-drilling*.
+* **useRef**: Digunakan di dalam `Navbar.jsx` untuk menyimpan *array* data riwayat pencarian (`history.current`). Perubahan data di sini tidak akan memicu komponen *re-render*.
