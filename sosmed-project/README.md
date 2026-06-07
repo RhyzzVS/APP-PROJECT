@@ -23,12 +23,12 @@ Implementasi fetch API pada proyek ini digunakan untuk mengambil data pengguna s
 Berikut adalah penggunaan hooks untuk memenuhi kriteria fungsionalitas aplikasi:
 
 *   **useState**: Digunakan untuk mengelola data dinamis agar aplikasi responsif terhadap interaksi pengguna. Dalam webmu, useState berfungsi menyimpan status global seperti tema aplikasi (theme), daftar pengikut (following), input pencarian (search), serta visibilitas komponen (showProfile, isOpen).
-![Bukti Implementasi useState](sosmed-project/src/assets/useState.png)
+![Bukti Implementasi useState](src/assets/useState.png)
 *   **useEffect**: Digunakan untuk menjalankan operasi sampingan (side effects) seperti pengambilan data.Hook ini digunakan untuk melakukan fetch data pengguna dari API saat komponen pertama kali dimuat.
-![Bukti Implementasi useEffect](sosmed-project/src/assets/useEffect.png)
+![Bukti Implementasi useEffect](src/assets/useEffect.png)
 *   **useContext**: Digunakan untuk berbagi data secara global antar komponen tanpa perlu prop-drilling. Di dalam proyek ini, hook ini diimplementasikan melalui AppProvider untuk menyediakan akses state global—seperti theme, following, search, dan fungsi terkait—ke seluruh komponen di dalam aplikasi secara langsung.
-![Bukti Implementasi useContext](sosmed-project/src/assets/useContext.png)
+![Bukti Implementasi useContext](src/assets/useContext.png)
 *   **useRef**: Digunakan untuk mengakses elemen DOM secara langsung tanpa memicu re-render. Hook ini diimplementasikan melalui searchRef untuk memberikan fokus secara otomatis pada elemen input pencarian setelah ikon pencarian ditekan.
-![Bukti Implementasi useRef](sosmed-project/src/assets/useRef.png)
+![Bukti Implementasi useRef](src/assets/useRef.png)
 
 ---
