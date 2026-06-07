@@ -1,0 +1,426 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --bg-color: #fff;
+  --color: #000;
+  --bg-post: #E4E4E4;
+  --ikon-search: url("https://img.icons8.com/android/24/search.png");
+  --ikon-tema: url("https://img.icons8.com/android/24/sun.png");
+  --ikon-home: url("https://img.icons8.com/fluency-systems-regular/48/home--v1.png");
+  --ikon-explore: url("https://img.icons8.com/forma-light/48/compass.png");
+  --ikon-notifications: url("https://img.icons8.com/sf-regular/48/appointment-reminders.png");
+  --ikon-messages: url("https://img.icons8.com/pulsar-line/48/chat-message.png");
+  --ikon-bookmarks: url("https://img.icons8.com/fluency-systems-regular/48/bookmark-ribbon--v1.png");
+  --ikon-plus: url("https://img.icons8.com/android/24/FFFFFF/plus.png");
+  --ikon-like: url("https://img.icons8.com/ios/50/818181/hearts--v1.png");
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --color: #fff;
+  --bg-post: #262626;
+  --ikon-search: url("https://img.icons8.com/android/24/FFFFFF/search.png");
+  --ikon-tema: url("https://img.icons8.com/forma-light-sharp/24/FFFFFF/crescent-moon.png");
+  --ikon-home: url("https://img.icons8.com/fluency-systems-regular/48/FFFFFF/home--v1.png");
+  --ikon-explore: url("https://img.icons8.com/forma-light/48/FFFFFF/compass.png");
+  --ikon-notifications: url("https://img.icons8.com/sf-regular/48/FFFFFF/appointment-reminders.png");
+  --ikon-messages: url("https://img.icons8.com/pulsar-line/48/FFFFFF/chat-message.png");
+  --ikon-bookmarks: url("https://img.icons8.com/fluency-systems-regular/48/FFFFFF/bookmark-ribbon--v1.png");
+  --ikon-plus: url("https://img.icons8.com/android/24/plus.png")
+}
+
+.app-container {
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--color);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.theme-toggle-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  background: transparent var(--ikon-tema) no-repeat center / contain;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.15); /* Membesar sedikit saat didekati mouse */
+}
+
+/* KETIKA DARK MODE AKTIF: Putar tombol matahari 360 derajat */
+[data-theme="dark"] .theme-toggle-btn {
+  transform: rotate(360deg);
+}
+
+/* NAVBAR */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--bg-color);
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar-logo {
+  margin: 0;
+  color: var(--color);
+}
+
+.navbar-search {
+  margin-right: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search-input {
+  width: 0px;
+  opacity: 0;
+  border: 1px solid transparent;
+  padding: 0;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.navbar-search.open .navbar-search-input {
+  width: 350px;
+  background-color: var(--bg-color);
+  color: var(--color);
+  opacity: 1;
+  padding: 10px 15px;
+  border: 1px solid #c5c5c5;
+  border-radius: 90px;
+}
+
+.btn-search {
+  font-size: 10px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent var(--ikon-search) no-repeat center / contain;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* MAIN LAYOUT */
+.main-layout {
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
+  justify-content: center;
+  width: 100%;
+  padding-top: 58px;
+}
+
+.sidebar-left {
+  position: fixed;
+  width: 70px;
+  height: 100vh;
+  background: var(--bg-color);
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  box-sizing: border-box;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+  left: 0;
+}
+
+.sidebar-left-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.home {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background: transparent var(--ikon-home) no-repeat center / contain;
+}
+
+.explore {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background: transparent var(--ikon-explore) no-repeat center / contain;
+}
+
+.notifications {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background: transparent var(--ikon-notifications) no-repeat center / contain;
+}
+
+.messages {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background: transparent var(--ikon-messages) no-repeat center / contain;
+}
+
+.bookmarks {
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background: transparent var(--ikon-bookmarks) no-repeat center / contain;
+}
+
+.sidebar-left {
+  position: fixed;
+  width: 70px;
+  height: calc(100vh - 58px);
+  background: var(--bg-color);
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  box-sizing: border-box;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+  left: 0;
+  top: 58px;
+}
+
+.sidebar-right {
+  position: fixed;
+  top: 58px;
+  right: 0;
+  width: 28rem;
+  height: 87vh;
+  background: var(--bg-color);
+  border-left: 1px solid #c5c5c5;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    background 0.3s ease;
+}
+
+.sidebar-right.open {
+  transform: translateX(0);
+}
+
+.sidebar-right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sidebar-right-content .avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 2px solid var(--color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-right-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  color: var(--color);
+  font-weight: 600;
+}
+
+.sidebar-right-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: #888;
+}
+
+.sidebar-right.open {
+  transform: translateX(0);
+}
+
+.feed-container {
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.main-layout:has(.sidebar-right.open) .feed-container {
+  transform: translateX(-15rem);
+}
+
+.postcard-container {
+  width: 100%;
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-post);
+  border-radius: 10px;
+  padding: 15px;
+  box-sizing: border-box;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+  box-shadow: #00000020 2px 2px 3px, #00000010 2px 2px 2px;
+}
+
+.header-post {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+.ava-post {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nick-post {
+  color: var(--color);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.usn-post {
+  color: #888;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.follow-btn {
+  margin-bottom: .5rem;
+  margin-left: auto;
+  padding: 6px 12px;
+  border-radius: 90px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--color);
+  color: var(--bg-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  transition: .3s ease;
+}
+
+.follow-btn:not(.active)::before {
+  content: "";
+  display: inline-block;
+  width: 15px;  
+  height: 15px;
+  background: transparent var(--ikon-plus) no-repeat center / contain;
+}
+
+.follow-btn.active {
+  background: #444444; 
+  color: #888888;   
+  border-color: var(--color);
+  padding: 6px 20px; 
+  transition: .3s ease;
+}
+
+.like-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  background-color: transparent;
+  color: var(--color);
+  font-weight: 600;
+}
+
+.like-btn::before {
+  content: "";
+  display: inline-block;
+  width: 29px;  
+  height: 29px;
+}
+
+.like-btn:not(.liked)::before {
+  background: transparent var(--ikon-like) no-repeat center / contain;
+}
+
+.like-btn.liked::before {
+  background: transparent url("https://img.icons8.com/color/48/filled-like.png") no-repeat center / contain;
+  animation: bounceLike 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounceLike {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
